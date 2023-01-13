@@ -1,0 +1,33 @@
+body {
+    background-color: rgb(18, 17, 17);
+    color: antiquewhite;
+    text-align: center;
+}
+
+
+h1 {
+    border: 5px;
+    border-color: rgb(168, 206, 229);
+    border-radius: 10px;
+    border-style: outset;
+
+}
+h2 {
+    border: 5px;
+    color: rgb(202, 234, 234);
+    font-size: 30px;
+    border-style: groove;
+    border-color: rgb(161, 181, 196);
+    border-radius: 10px;
+    font-weight: bolder;
+}
+pre {
+  border: 5px;
+  color: rgb(8, 159, 41);
+  font-size: 22px;
+  border-style: groove;
+  border-color: rgb(12, 110, 184);
+  border-radius: 10px;
+  font-weight: bolder;
+  text-align: justify;
+}

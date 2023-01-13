@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DS CODES</title>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+    <h1>DS CODES FOR 3RD SEM ISE</h1>
+    <h2>Syntax of malloc()</h1>
+<pre>ptr=(cast-type*)malloc(byte-size); </pre>
+    <h2>Syntax of calloc()</h1>
+<pre>ptr=(cast-type*)calloc(n,element-size);</pre>
+    <h2>The following example shows the usage of realloc() function</h2>
+    <br>
+<pre>
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+char *str;
+/* Initial memory allocation */
+str = (char *) malloc(12);
+strcpy(str, "vivekananda");
+printf("String = %s, Address = %u\n", str, str);
+/* Reallocating memory */
+str = (char *) realloc(str, 25);
+strcat(str, "swamy");
+printf("String = %s, Address = %u\n", str, str);
+free(str);
+return(0);
+}
+Output
+String = vivekananda, Address = 355090448
+String = vivekanandaswamy, Address = 355090448
+</pre>
+<h1>STACK OPERATIONS</h1>
+<h2>Push Function in C</h2>
+<pre>
+void push()
+{
+int n;
+printf("\n Enter item in stack");
+scanf("%d",&n);
+if(top==size-1)
+{
+printf("\nStack is Full");
+}
+else
+{
+top=top+1;
+stack[top]=n;
+}
+}
+Pop Function in C
+</pre>
+<h2>Pop Function in C</h2>
+<pre>
+void pop()
+{
+int item;
+if(top==-1)
+{
+printf("\n Stack is empty");
+}
+else
+{
+item=stack[top];
+printf("\n item popped is=%d", item);
+top--;
+}
+}    
+</pre>
+<h1>STACK OPERATION USING DYNAMIC ARRAY</h1>
+<pre>
+#include <stdio.h>
+#include <stdlib.h>
+struct node
+{
+int info;
+struct node *ptr;
+}*top,*top1,*temp;
+void push(int data);
+void pop();
+void display();
+void destroy();
+void main()
+{
+int no, ch, e;
+printf("\n 1 - Push");
+printf("\n 2 - Pop");
+printf("\n 3 - Exit");
+printf("\n 4 - Dipslay");
+printf("\n 5 - Destroy stack");
+top=NULL;
+while (1)
+{
+printf("\n Enter choice : ");
+scanf("%d", &ch);
+switch (ch)
+{
+case 1:
+printf("Enter data : ");
+scanf("%d", &no);
+push(no);
+break;
+case 2:
+pop();
+break;
+case 3:
+exit(0);
+case 4:
+display();
+break;
+case 5:
+destroy();
+break;
+default :
+printf(" Wrong choice, Please enter correct choice ");
+break;
+}
+}
+}
+
+
+void push(int data)
+{
+if (top == NULL)
+{
+top =(struct node *)malloc(1*sizeof(struct node));
+top->ptr = NULL;
+top->info = data;
+}
+else
+{
+temp =(struct node *)malloc(1*sizeof(struct node));
+temp->ptr = top;
+temp->info = data;
+top = temp;
+}
+}
+/* Display stack elements */
+
+
+void display()
+{
+top1 = top;
+if (top1 == NULL)
+{
+printf("Stack is empty");
+return;
+}
+while (top1 != NULL)
+{
+printf("%d ", top1->info);
+top1 = top1->ptr;
+}
+}
+/* Pop Operation on stack */
+
+
+void pop()
+{
+top1 = top;
+if (top1 == NULL)
+{
+printf("\n Error : Trying to pop from empty stack");
+return;
+}
+else
+top1 = top1->ptr;
+printf("\n Popped value : %d", top->info);
+free(top);
+top = top1;
+}
+
+
+void destroy()
+{
+top1 = top;
+while (top1 != NULL)
+{
+top1 = top->ptr;
+free(top);
+top = top1;
+top1 = top1->ptr;
+}
+free(top1);
+top = NULL;
+printf("\n All stack elements destroyed");
+}
+</pre>
+<h2>C Program to find factorial of a given number using recursion</h2>
+<pre>
+int factorial(int);
+void main()
+{
+int result,num;
+scanf("%d",&num);
+result=factorial(num);
+printf("%d",result);
+}
+int factorial(int ele)
+{
+if(ele==0)
+return 1;
+else
+return (ele*factorial(ele-1));
+}
+</pre>
+<h2>C Program to find GCD of Two Numbers using Recursion</h2>
+<pre>
+int gcd(int a,int b)
+{
+    if(a==0)
+    {
+        return b;
+    }
+    if(b==0)
+    {
+        return a;
+    }
+    if(a>b)
+    {
+        gcd(a%b,b);
+    }
+    else
+    {
+        gcd(a,b%a);
+    }
+}
+</pre>
+<h2>C Program to generate Fibonacci Sequence using Recursion</h2>
+<pre>
+#include<stdio.h>
+int Fibonacci(int);
+int main()
+{
+int n, i = 0, c;
+scanf("%d",&n);
+printf("Fibonacci series\n");
+for ( c = 1 ; c <= n ; c++ )
+{
+printf("%d\n", Fibonacci(i));
+i++;
+}
+return 0;
+}
+int Fibonacci(int n)
+{
+if ( n == 0 )
+return 0;
+else if ( n == 1 )
+return 1;
+else
+return ( Fibonacci(n-1) + Fibonacci(n-2) );
+}
+</pre>
+<h2>TOWER OF HANOI</h2>
+<pre>
+#include<stdio.h> 
+int count=0,n;
+int tower(int n,char s,char t,char d)
+{
+if(n==1)
+{
+printf("\n Move disc 1 from %c to %c",s,d); 
+count++;
+return 1;
+}
+tower(n-1,s,d,t);
+printf("\n Move disc %d from %c to %c",n,s,d); 
+count++;
+tower(n-1,t,s,d);
+}
+int main( )
+{
+printf("\n Enter the no. of discs:"); 
+scanf("%d",&n); 
+tower(n,'A','B','C');
+}
+</pre>
+<h2>Ackermann Function</h2>
+<pre>
+#include<stdio.h>
+int A(int m, int n);
+
+main()
+{
+    int m,n;
+    printf("Enter two numbers :: \n");
+    scanf("%d%d",&m,&n);
+    printf("\nOUTPUT :: %d\n",A(m,n));
+}
+
+int A(int m, int n)
+{
+    if(m==0)
+            return n+1;
+    else if(n==0)
+            return A(m-1,1);
+    else
+            return A(m-1,A(m,n-1));
+}
+</pre>
+<h2>ARRAY IMPLEMENTATION OF A QUEUE</h2>
+<pre>
+#include <stdio.h>
+
+    #define MAX 50
+        
+    void insert();
+    void delete();
+    void display();
+    int queue_array[MAX];
+    int rear = - 1;
+    int front = - 1;
+    main()
+    {
+        int choice;
+        while (1)
+        {
+            printf("1.Insert element to queue \n");
+            printf("2.Delete element from queue \n");
+            printf("3.Display all elements of queue \n");
+            printf("4.Quit \n");
+            printf("Enter your choice : ");
+            scanf("%d", &choice);
+            switch (choice)
+            {
+                case 1:
+                insert();
+                break;
+                case 2:
+                delete();
+                break;
+                case 3:
+                display();
+                break;
+                case 4:
+                exit(1);
+                default:
+                printf("Wrong choice \n");
+            } /* End of switch */
+        } /* End of while */
+    } /* End of main() */
+        
+    void insert()
+    {
+        int add_item;
+        if (rear == MAX - 1)
+        printf("Queue Overflow \n");
+        else
+        {
+            if (front == - 1)
+            /*If queue is initially empty */
+            front = 0;
+            printf("Inset the element in queue : ");
+            scanf("%d", &add_item);
+            rear = rear + 1;
+            queue_array[rear] = add_item;
+        }
+    } /* End of insert() */
+        
+    void delete()
+    {
+        if (front == - 1 || front > rear)
+        {
+            printf("Queue Underflow \n");
+            return ;
+        }
+        else
+        {
+            printf("Element deleted from queue is : %d\n", queue_array[front]);
+            front = front + 1;
+        }
+    } /* End of delete() */
+        
+    void display()
+    {
+        int i;
+        if (front == - 1)
+            printf("Queue is empty \n");
+        else
+        {
+            printf("Queue is : \n");
+            for (i = front; i <= rear; i++)
+                printf("%d ", queue_array[i]);
+            printf("\n");
+        }
+    } 
+</pre>
+<h2>CIRCULAR QUEUE</h2>
+<pre>
+#include<stdio.h>
+# define MAX 5
+int cqueue_arr[MAX];
+int front = -1;
+int rear = -1;
+void insert(int item)
+{
+if((front == 0 && rear == MAX-1) || (front == rear+1))
+{
+printf("Queue Overflow n");
+return;
+}
+if(front == -1)
+{
+front = 0;
+rear = 0;
+}
+else
+{
+if(rear == MAX-1)
+rear = 0;
+else
+rear = rear+1;
+}
+cqueue_arr[rear] = item ;
+}
+void deletion()
+{
+if(front == -1)
+{
+printf("Queue Underflown");
+return ;
+}
+printf("Element deleted from queue is : %dn",cqueue_arr[front]);
+if(front == rear)
+{
+front = -1;
+rear=-1;
+}
+else
+{
+if(front == MAX-1)
+front = 0;
+else
+front = front+1;
+}
+}
+void display()
+{
+int front_pos = front,rear_pos = rear;
+if(front == -1)
+{
+printf("Queue is emptyn");
+return;
+}
+printf("Queue elements :n");
+if( front_pos <= rear_pos )
+while(front_pos <= rear_pos)
+{
+printf("%d ",cqueue_arr[front_pos]);
+front_pos++;
+}
+else
+{
+while(front_pos <= MAX-1)
+{
+printf("%d ",cqueue_arr[front_pos])
+front_pos++;
+}
+front_pos = 0;
+while(front_pos <= rear_pos)
+{
+printf("%d ",cqueue_arr[front_pos]);
+front_pos++;
+}
+}
+printf("n");
+}
+int main()
+{
+int choice,item;
+do
+{
+printf("1.Insertn");
+printf("2.Deleten");
+printf("3.Displayn");
+printf("4.Quitn");
+printf("Enter your choice : ");
+scanf("%d",&choice);
+switch(choice)
+{
+case 1 :
+printf("Input the element for insertion in queue : ");
+scanf("%d", &item);
+insert(item);
+break;
+case 2 :
+deletion();
+break;
+case 3:
+display();
+break;
+case 4:
+break;
+default:
+printf("Wrong choicen");
+}
+}
+while(choice!=4);
+return 0;
+}
+
+
+<h1>TREES FUNCTIONS</h1>
+<H2>PRE ORDER</H2>
+<pre>
+void preorder (treepointer ptr) 
+{ 
+if (ptr) 
+{ 
+printf (“%d”,ptr→data) 
+preorder (ptr→leftchild); 
+preorder (ptr→rightchild); 
+} 
+}
+</pre>
+<h2>INORDER</h2>  
+<pre>
+void inorder(treepointer ptr) 
+{ 
+if (ptr) 
+{ 
+inorder (ptr→leftchild); 
+printf (“%d”,ptr→data); 
+inorder (ptr→rightchild); 
+} 
+}
+</pre> 
+<h2>POST ORDER</h2> 
+<pre>
+void postorder(treepointer ptr) 
+{ 
+if (ptr) 
+{ 
+postorder (ptr→leftchild); 
+postorder (ptr→rightchild); 
+printf (“%d”,ptr→data); 
+} 
+}
+</pre>
+</body>
+</html>
