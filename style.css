@@ -31,3 +31,6 @@ pre {
   font-weight: bolder;
   text-align: justify;
 }
+#test {
+word-wrap = break-word;
+}
