@@ -22,15 +22,8 @@ h2 {
     font-weight: bolder;
 }
 pre {
-  border: 5px;
   color: rgb(8, 159, 41);
   font-size: 22px;
-  border-style: groove;
-  border-color: rgb(12, 110, 184);
-  border-radius: 10px;
   font-weight: bolder;
   text-align: justify;
-}
-#test {
-word-wrap = break-word;
 }
